@@ -1,4 +1,4 @@
-# jsonld-document-loader
+#### @transmute/jsonld-document-loader
 
 Working with untrusted data on the internet is dangerous.
 
