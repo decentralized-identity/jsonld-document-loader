@@ -18,7 +18,7 @@ You can extend this `documentLoader` to support mutable content, but be careful,
 
 It's your responsibility to sanitize and validate data before handling it or passing it to other internal software...
 
-If you are unfamilar with the concept of input validation... please don't use this software until you have read [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
+If you are unfamilar with the concept of input validation... please don't use this software until you have read the [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 
 ```ts
 import {
@@ -53,7 +53,7 @@ const myNewProductionLoader = (
 
 NO! In production, you should never process ANY DATA, which your application was not designed for.
 
-Please review [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
+Please review the [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 
 #### Why are context's necessary for JSON-LD and CBOR-LD?
 
