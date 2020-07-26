@@ -69,4 +69,4 @@ They solve this problem, without requiring you to forever be a customer of a par
 
 Don't be suprised if you see Linked Data hater's in the wild...
 
-Massive corporations that have aquired large amounts of private user and corporate information are trying hard to prevent users from leaving centralized platforms with semantically unambigious copies of _their_ data.
+Massive corporations that have aquired large amounts of private user and corporate information are trying hard to prevent users from leaving centralized platforms with semantically unambigious copies of _their own_ data!
