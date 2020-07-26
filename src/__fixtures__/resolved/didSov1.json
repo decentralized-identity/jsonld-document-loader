@@ -1,0 +1,5 @@
+{
+  "contextUrl": null,
+  "documentUrl": "did:sov:CYQLsccvwhMTowprMjGjQ6",
+  "document": "{\"contextUrl\":null,\"document\":{\"@context\":\"https://www.w3.org/2019/did/v1\",\"id\":\"did:sov:CYQLsccvwhMTowprMjGjQ6\",\"service\":[{\"type\":\"custom\",\"serviceEndpoint\":\"https://notary.ownyourdata.eu/?hash=fef73e27304f4f9c17655f1c598b75237664aff67e48a50edc51505a742985cf\"}],\"authentication\":[{\"type\":\"Ed25519SignatureAuthentication2018\",\"publicKey\":[\"did:sov:CYQLsccvwhMTowprMjGjQ6#key-1\"]}],\"publicKey\":[{\"id\":\"did:sov:CYQLsccvwhMTowprMjGjQ6#key-1\",\"type\":\"Ed25519VerificationKey2018\",\"publicKeyBase58\":\"CLFRfp2wa3ifbsVvdq52WcpEy7aujactsoqQgxkz7ZKR\"}]},\"documentUrl\":\"did:sov:CYQLsccvwhMTowprMjGjQ6\"}"
+}
