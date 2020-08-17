@@ -1,12 +1,14 @@
 // more safe
-export * as immutable from './loaders/immutable'
-export * as safeDid from './loaders/safe-did'
-export * as production from './loaders/production'
+import * as immutable from './loaders/immutable';
+import * as safeDid from './loaders/safe-did';
+import * as production from './loaders/production';
 
 // less safe
-export * as http from './loaders/http'
-export * as unsafeDid from './loaders/unsafe-did'
-export * as development from './loaders/development'
+import * as http from './loaders/http';
+import * as unsafeDid from './loaders/unsafe-did';
+import * as development from './loaders/development';
 
-export * from './types'
-export * from './staticContexts'
+export { immutable, safeDid, production, http, unsafeDid, development };
+
+export * from './types';
+export * from './staticContexts';
