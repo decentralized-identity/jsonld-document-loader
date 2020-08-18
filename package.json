@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build && cp -r ./src/contexts ./dist/contexts",
     "test": "tsdx test",
     "lint": "tsdx lint src",
     "prepare": "tsdx build"
