@@ -5,6 +5,8 @@ const staticContextMap: IContextMap = {
   'https://www.w3.org/2018/credentials/v1': require('./contexts/vc-v1.json'),
   'https://www.w3.org/2018/credentials/examples/v1': require('./contexts/vc-example-v1.json'),
   'https://www.w3.org/ns/odrl.jsonld': require('./contexts/odrl.json'),
+  'https://w3id.org/security/v1': require('./contexts/sec-v1.json'),
+  'https://w3id.org/security/v2': require('./contexts/sec-v2.json'),
 };
 
 const staticContextUris = Object.keys(staticContextMap);

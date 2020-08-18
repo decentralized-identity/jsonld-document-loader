@@ -2,7 +2,7 @@
   "name": "@transmute/jsonld-document-loader",
   "author": "Orie Steele",
   "module": "dist/jsonld-document-loader.esm.js",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "license": "unlicense",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "build": "tsdx build && cp -r ./src/contexts ./dist/contexts",
     "test": "tsdx test",
     "lint": "tsdx lint src",
-    "prepare": "tsdx build"
+    "prepare": "npm run build"
   },
   "peerDependencies": {},
   "husky": {
