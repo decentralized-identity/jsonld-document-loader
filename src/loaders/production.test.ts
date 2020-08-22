@@ -35,8 +35,13 @@ it('fails to resolve public mutable DIDs', async () => {
   try {
     await documentLoader(dids.didSov1);
   } catch (e) {
-    expect(e.message).toBe(
-      'No context support for did:sov:CYQLsccvwhMTowprMjGjQ6'
-    );
+    expect(e.message).toBe('No support for did:sov:CYQLsccvwhMTowprMjGjQ6');
   }
+});
+
+it('succeeds on specific did uri', async () => {
+  const result = await documentLoader(
+    'did:key:z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP#z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP'
+  );
+  expect(result).toEqual(resolvedDids.didKey1);
 });

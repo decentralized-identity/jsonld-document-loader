@@ -11,11 +11,10 @@ it('can resolve valid did:key', async () => {
 
 it('fails with error on invalid did:key', async () => {
   expect.assertions(1);
+  const brokeDid = dids.didKey1.substr(0, 24);
   try {
-    await documentLoader(dids.didKey1.substr(0, 24));
+    await documentLoader(brokeDid);
   } catch (e) {
-    expect(e.message).toBe(
-      'UnresolvableDid -> Unsupported Fingerprint Type: z6Mkf5rGMoatrSj1'
-    );
+    expect(e.message).toBe(`UnresolvableDid -> ${brokeDid}`);
   }
 });

@@ -8,16 +8,18 @@ export const documentLoader = async (
 ): Promise<IDocumentLoaderResponse> => {
   let didDocument = null;
 
-  const method = uri.split(':')[1];
+  const _uri = uri.split('#')[0];
+
+  const method = _uri.split(':')[1];
 
   switch (method) {
     case 'key': {
       try {
-        didDocument = await didKey.resolve(uri);
+        didDocument = await didKey.resolve(_uri);
       } catch (e) {
-        console.error('did documentLoader failed on: ' + uri);
+        console.error('did documentLoader failed on: ' + _uri);
         console.error(e);
-        throw new errors.UnresolvableDid(e.message);
+        throw new errors.UnresolvableDid(_uri);
       }
     }
   }
@@ -25,9 +27,9 @@ export const documentLoader = async (
   if (didDocument !== null) {
     return {
       contextUrl: null,
-      documentUrl: uri,
+      documentUrl: _uri,
       document: JSON.stringify(didDocument),
     };
   }
-  throw new errors.UnsupportedUri(`No context support for ${uri}`);
+  throw new errors.UnsupportedUri(`No support for ${_uri}`);
 };

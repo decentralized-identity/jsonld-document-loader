@@ -14,9 +14,7 @@ it('fails with error on invalid did:key', async () => {
   try {
     await documentLoader(dids.didKey1.substr(0, 24));
   } catch (e) {
-    expect(e.message).toBe(
-      'UnresolvableDid -> Unsupported Fingerprint Type: z6Mkf5rGMoatrSj1'
-    );
+    expect(e.message).toBe('UnresolvableDid -> did:key:z6Mkf5rGMoatrSj1');
   }
 });
 
