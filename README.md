@@ -4,6 +4,10 @@ Working with untrusted data on the internet is dangerous.
 
 Document loaders enable decentralized security, interoperability and extensibility while gaurding against vendor lock in.
 
+In the linked data community, one mechanism for bridging vendor networks, a permissioned IPFS and Hyperledger Indy is to expose resources on both networks through a common interface.
+
+This module helps you build a common interface to multiple networks easily.
+
 ```
 npm i @transmute/jsonld-document-loader --save
 ```

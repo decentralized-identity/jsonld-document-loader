@@ -7,3 +7,5 @@ export interface IDocumentLoaderResponse {
   documentUrl: string;
   document: string;
 }
+
+export type DocumentLoader = (uri: string) => Promise<IDocumentLoaderResponse>;
