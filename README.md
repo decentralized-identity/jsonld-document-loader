@@ -4,11 +4,76 @@ Working with untrusted data on the internet is dangerous.
 
 Document loaders enable decentralized security, interoperability and extensibility while gaurding against vendor lock in.
 
+In the linked data community, one mechanism for bridging vendor networks such as permissioned IPFS and Hyperledger Indy is to expose resources on both networks through a common interface.
+
+This module helps you build a common interface to multiple networks easily.
+
 ```
 npm i @transmute/jsonld-document-loader --save
 ```
 
 ### Usage
+
+```ts
+import { golem, contexts } from '@transmute/jsonld-document-loader';
+// import resolvers, ipfs, etc... then attach them to the document loader.
+const axios = require('axios');
+
+const documentLoader = golem
+  .build({
+    contexts: {
+      ...contexts.W3C_Verifiable_Credentials,
+      ...contexts.W3ID_Security_Vocabulary,
+    },
+  })
+  .addContext(contexts.W3C_Decentralized_Identifiers)
+  .addResolver({
+    ['did:bar']: {
+      resolve: (did: string) => {
+        return Promise.resolve({ id: did });
+      },
+    },
+  })
+  .addResolver({
+    ['Qm']: {
+      resolve: (cid: string) => {
+        const resp = await axios.get(`https://ipfs.io/ipfs/${cid}`);
+        // transform ipfs data here...
+        // return a JSON Object / String / CBOR
+        return Promise.resolve(resp.data);
+      },
+    },
+  })
+
+  .buildDocumentLoader();
+
+let result;
+
+result = await documentLoader(
+  'https://ipfs.io/ipfs/QmUQAxKQ5sbWWrcBZzwkThktfUGZvuPQyTrqMzb3mZnLE5'
+);
+// {
+//   "contextUrl": null,
+//   "documentUrl": "https://ipfs.io/ipfs/QmUQAxKQ5sbWWrcBZzwkThktfUGZvuPQyTrqMzb3mZnLE5",
+//   "document": "<?xml version=\"1.0\" encoding=\"UTF-8\"..."
+// }
+
+result = await documentLoader('https://www.w3.org/ns/did/v1');
+// {
+//   "contextUrl": null,
+//   "documentUrl": "did:bar:123",
+//   "document": "{\"@context\":{\"@version\":1.1..."
+// }
+
+result = await documentLoader('did:bar:123');
+// {
+//   "contextUrl": null,
+//   "documentUrl": "did:bar:123",
+//   "document": "{ id: 'did:bar:123' }"
+// }
+```
+
+### Privacy & Security Considerations
 
 In production, you should only process data your system is designed to handle.
 
@@ -20,38 +85,9 @@ It's your responsibility to sanitize and validate data before handling it or pas
 
 If you are unfamilar with the concept of input validation... please don't use this software until you have read the [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 
-```ts
-import {
-  production,
-  IDocumentLoaderResponse,
-  development,
-} from '@transmute/jsonld-document-loader';
-
-const myNewProductionLoader = (
-  uri: string
-): Promise<IDocumentLoaderResponse> => {
-  if (uri.indexOf('did:sov') === 0) {
-    // handle your URIs first.
-    return development.documentLoader(uri);
-  }
-  // use the safe defaults provided
-  return production.documentLoader(uri);
-};
-
-// const result = await myNewProductionLoader('did:sov:CYQLsccvwhMTowprMjGjQ6)
-// yields:
-// {
-//   "contextUrl": null,
-//   "documentUrl": "did:sov:CYQLsccvwhMTowprMjGjQ6",
-//   "document": "{...stringEncodedDidDocument}"
-// }
-```
-
-### Privacy & Security Considerations
-
 #### Do I need to download random remote contexts?
 
-NO! In production, you should never process ANY DATA, which your application was not designed for.
+NO! In production, you should never process ANY DATA, which your application was not designed for.... an obvious example of this XSS sanitization, which ensures that strings don't contain script tags... failure to do this can allow an attacker to exploit your web applications and attack your users...
 
 Please review the [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 

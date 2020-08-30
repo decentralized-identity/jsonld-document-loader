@@ -1,14 +1,19 @@
-// more safe
-import * as immutable from './loaders/immutable';
-import * as safeDid from './loaders/safe-did';
-import * as production from './loaders/production';
+import * as contexts from './contexts';
+import * as types from './types';
 
-// less safe
-import * as http from './loaders/http';
-import * as unsafeDid from './loaders/unsafe-did';
-import * as development from './loaders/development';
+import {
+  contextFactory,
+  resolverFactory,
+  documentLoaderFactory,
+} from './builder';
 
-export { immutable, safeDid, production, http, unsafeDid, development };
+const golem = documentLoaderFactory.pluginFactory;
 
-export * from './types';
-export * from './staticContexts';
+export {
+  golem,
+  contextFactory,
+  resolverFactory,
+  documentLoaderFactory,
+  contexts,
+  types,
+};
