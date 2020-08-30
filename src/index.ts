@@ -1,21 +1,16 @@
-import {
-  DocumentLoaderManager,
-  factoryDefaults,
-  pluginFactory,
-  plugin,
-} from './builder';
-
 import * as contexts from './contexts';
 import * as types from './types';
 
-const golemFactory = pluginFactory;
+import {
+  contextFactory,
+  resolverFactory,
+  documentLoaderFactory,
+} from './builder';
 
 export {
-  DocumentLoaderManager,
-  pluginFactory,
-  factoryDefaults,
-  plugin,
-  golemFactory,
+  contextFactory,
+  resolverFactory,
+  documentLoaderFactory,
   contexts,
   types,
 };

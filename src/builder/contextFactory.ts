@@ -1,11 +1,6 @@
 import * as Factory from 'factory.ts';
 
-import { IContextMap } from '../types';
-
-interface IContextManager {
-  contexts: IContextMap;
-  addContext: (contextMap: IContextMap) => IContextManager;
-}
+import { IContextManager, IContextMap } from '../types';
 
 const factoryDefaults: IContextManager = {
   contexts: {},
@@ -24,4 +19,4 @@ const pluginFactory = Factory.Sync.makeFactory<IContextManager>(
 
 const plugin = pluginFactory.build();
 
-export { IContextManager, IContextMap, pluginFactory, factoryDefaults, plugin };
+export { factoryDefaults, pluginFactory, plugin };

@@ -1,25 +1,8 @@
-import * as types from '../types';
+import { DocumentLoaderManager } from '../types';
 
 import * as Factory from 'factory.ts';
 import * as ContextFactory from './contextFactory';
 import * as ResolverFactory from './resolverFactory';
-
-interface IDocumentLoaderResponse {
-  contextUrl: string | null;
-  documentUrl: string;
-  document: string;
-}
-
-interface DocumentLoaderManager
-  extends ContextFactory.IContextManager,
-    ResolverFactory.IResolverManager {
-  documentLoader: (uri: string) => Promise<IDocumentLoaderResponse>;
-  addContext: (contextMap: ContextFactory.IContextMap) => DocumentLoaderManager;
-  addResolver: (
-    startWithResolverMap: ResolverFactory.IStartsWithResolver
-  ) => DocumentLoaderManager;
-  buildDocumentLoader: () => types.DocumentLoader;
-}
 
 const factoryDefaults = {
   ...ContextFactory.factoryDefaults,
@@ -62,10 +45,4 @@ const pluginFactory = Factory.Sync.makeFactory<DocumentLoaderManager>(
 
 const plugin = pluginFactory.build();
 
-export {
-  DocumentLoaderManager,
-  IDocumentLoaderResponse,
-  pluginFactory,
-  factoryDefaults,
-  plugin,
-};
+export { factoryDefaults, pluginFactory, plugin };

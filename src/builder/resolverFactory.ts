@@ -1,19 +1,6 @@
 import * as Factory from 'factory.ts';
 
-interface IResovler {
-  resolve: (uri: string) => Promise<any>;
-}
-
-interface IStartsWithResolver {
-  [startsWith: string]: IResovler;
-}
-
-interface IResolverManager {
-  resolvers: IStartsWithResolver;
-  addResolver: (contextMap: IStartsWithResolver) => IResolverManager;
-  hasResolverForUri: (uri: string) => IResovler | undefined;
-  resolve: (uri: string) => Promise<any>;
-}
+import { IResolverManager, IStartsWithResolver, IResolver } from '../types';
 
 const factoryDefaults: IResolverManager = {
   resolvers: {},
@@ -38,7 +25,7 @@ const factoryDefaults: IResolverManager = {
   resolve: function(uri: string) {
     let matchingResolver = this.hasResolverForUri(uri);
     if (matchingResolver) {
-      return (matchingResolver as IResovler).resolve(uri);
+      return (matchingResolver as IResolver).resolve(uri);
     }
     // console.error('Resolve called on unsupported URI ' + uri);
     throw new Error('Resolve called on unsupported URI ' + uri);
@@ -51,10 +38,4 @@ const pluginFactory = Factory.Sync.makeFactory<IResolverManager>(
 
 const plugin = pluginFactory.build();
 
-export {
-  IResolverManager,
-  IStartsWithResolver,
-  pluginFactory,
-  factoryDefaults,
-  plugin,
-};
+export { factoryDefaults, pluginFactory, plugin };
