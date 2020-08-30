@@ -1,8 +1,7 @@
 import * as ed25519 from '@transmute/did-key-ed25519';
 import * as vcjs from '@transmute/vc.js';
 import { Ed25519Signature2018 } from '@transmute/ed25519-signature-2018';
-
-import { documentLoaderFactory, contexts, types } from '../index';
+import { golem, contexts, types } from '../index';
 
 let key: ed25519.Ed25519KeyPair;
 let documentLoader: types.DocumentLoader;
@@ -20,7 +19,7 @@ it('generate some keys', async () => {
 });
 
 it('can create a documentLoader', async () => {
-  documentLoader = documentLoaderFactory.pluginFactory
+  documentLoader = golem
     .build({
       contexts: {
         ...contexts.W3C_Verifiable_Credentials,

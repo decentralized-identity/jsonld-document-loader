@@ -7,7 +7,10 @@ import {
   documentLoaderFactory,
 } from './builder';
 
+const golem = documentLoaderFactory.pluginFactory;
+
 export {
+  golem,
   contextFactory,
   resolverFactory,
   documentLoaderFactory,
