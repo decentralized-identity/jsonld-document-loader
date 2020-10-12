@@ -91,7 +91,7 @@ NO! In production, you should never process ANY DATA, which your application was
 
 Please review the [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).
 
-#### Why are context's necessary for JSON-LD and CBOR-LD?
+#### Why are contexts necessary for JSON-LD and CBOR-LD?
 
 They are a mechanism for elegantly solving semantic disambuity, in a decentralized manner.
 
@@ -103,6 +103,6 @@ That's why linked data formats like JSON-LD and CBOR-LD are so valuable.
 
 They solve this problem, without requiring you to forever be a customer of a particular vendor, by making the vendor's data portable and interoperable outside of the software which created it...
 
-Don't be suprised if you see Linked Data hater's in the wild...
+Don't be suprised if you see Linked Data haters in the wild...
 
 Massive corporations that have aquired large amounts of private user and corporate information are trying hard to prevent users from leaving centralized platforms with semantically unambigious copies of _their own_ data!
