@@ -15,11 +15,14 @@ npm i @transmute/jsonld-document-loader --save
 ### Usage
 
 ```ts
-import { golem, contexts } from '@transmute/jsonld-document-loader';
+import {
+  documentLoaderFactory,
+  contexts,
+} from '@transmute/jsonld-document-loader';
 // import resolvers, ipfs, etc... then attach them to the document loader.
 const axios = require('axios');
 
-const documentLoader = golem
+const documentLoader = documentLoaderFactory.pluginFactory
   .build({
     contexts: {
       ...contexts.W3C_Verifiable_Credentials,
@@ -102,7 +105,3 @@ Yet, without agreeing to a common representation for semantic concepts, how can 
 That's why linked data formats like JSON-LD and CBOR-LD are so valuable.
 
 They solve this problem, without requiring you to forever be a customer of a particular vendor, by making the vendor's data portable and interoperable outside of the software which created it...
-
-Don't be suprised if you see Linked Data haters in the wild...
-
-Massive corporations that have aquired large amounts of private user and corporate information are trying hard to prevent users from leaving centralized platforms with semantically unambigious copies of _their own_ data!
