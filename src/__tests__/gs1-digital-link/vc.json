@@ -1,0 +1,27 @@
+{
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://www.w3.org/2018/credentials/examples/v1"
+    ],
+    "id": "http://example.gov/credentials/3732",
+    "type": [
+      "VerifiableCredential",
+      "UniversityDegreeCredential"
+    ],
+    "issuer": "https://id.gs1.org/gln/0614141123452",
+    "issuanceDate": "2020-03-10T04:24:12.164Z",
+    "credentialSubject": {
+      "id": "http://example.com/subject/123",
+      "degree": {
+        "type": "BachelorDegree",
+        "name": "Bachelor of Science and Arts"
+      }
+    },
+    "proof": {
+      "type": "Ed25519Signature2018",
+      "created": "2020-03-10T04:24:12.164Z",
+      "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..GHCIcXiQllmYYqJiB_XU-zHThpXQnXo_7Y3N3thOpmmJmO9GmACFeEjgLY4QvMXWcWgSzBBJyyc_EBfccrqYCQ",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "https://id.gs1.org/gln/0614141123452#z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP"
+    }
+  }
