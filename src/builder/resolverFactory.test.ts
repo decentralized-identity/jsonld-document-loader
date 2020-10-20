@@ -3,7 +3,7 @@ import { pluginFactory } from './resolverFactory';
 it('can build a resolver manager with defaults', async () => {
   const manager = pluginFactory.build({
     resolvers: {
-      ['did:foo']: {
+      'did:foo': {
         resolve: (did: string) => {
           return Promise.resolve({ id: did });
         },
@@ -17,7 +17,7 @@ it('can add a resolver', async () => {
   expect.assertions(5);
   const manager = pluginFactory.build();
   manager.addResolver({
-    ['did:foo']: {
+    'did:foo': {
       resolve: (did: string) => {
         return Promise.resolve({ id: did });
       },
@@ -32,7 +32,7 @@ it('can add a resolver', async () => {
     expect(e.message).toBe('Resolve called on unsupported URI did:bar:123');
   }
   manager.addResolver({
-    ['did:bar']: {
+    'did:bar': {
       resolve: (did: string) => {
         return Promise.resolve({ id: did });
       },

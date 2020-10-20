@@ -7,7 +7,7 @@ it('can build a documentLoader manager with defaults', async () => {
       ...contexts.W3C_Decentralized_Identifiers,
     },
     resolvers: {
-      ['did:foo']: {
+      'did:foo': {
         resolve: (did: string) => {
           return Promise.resolve({ id: did });
         },
@@ -24,7 +24,7 @@ it('can add a contexts and resolvers', async () => {
   const manager = pluginFactory.build();
   manager.addContext(contexts.W3C_Decentralized_Identifiers);
   manager.addResolver({
-    ['did:bar']: {
+    'did:bar': {
       resolve: (did: string) => {
         return Promise.resolve({ id: did });
       },
@@ -39,7 +39,7 @@ it('can use documentLoader to resolve contexts and did documents', async () => {
 
   manager.addContext(contexts.W3C_Decentralized_Identifiers);
   manager.addResolver({
-    ['did:bar']: {
+    'did:bar': {
       resolve: (did: string) => {
         return Promise.resolve({ id: did });
       },

@@ -1,7 +1,7 @@
 import * as ed25519 from '@transmute/did-key-ed25519';
 import * as vcjs from '@transmute/vc.js';
 import { Ed25519Signature2018 } from '@transmute/ed25519-signature-2018';
-import { golem, contexts, types } from '../index';
+import { documentLoaderFactory, contexts, types } from '../index';
 
 let key: ed25519.Ed25519KeyPair;
 let documentLoader: types.DocumentLoader;
@@ -9,17 +9,18 @@ let vc: any;
 
 it('generate some keys', async () => {
   key = await ed25519.Ed25519KeyPair.generate({
-    seed: Buffer.from(
-      '9b937b81322d816cfab9d5a3baacc9b2a5febe4b149f126b3630f93a29527017',
-      'hex'
-    ),
+    secureRandom: () => {
+      return Buffer.from(
+        '9b937b81322d816cfab9d5a3baacc9b2a5febe4b149f126b3630f93a29527017',
+        'hex'
+      );
+    },
   });
-  key.id = key.controller + key.id;
-  expect(key.publicKeyBase58).toBeDefined();
+  expect(key.id).toBeDefined();
 });
 
 it('can create a documentLoader', async () => {
-  documentLoader = golem
+  documentLoader = documentLoaderFactory.pluginFactory
     .build({
       contexts: {
         ...contexts.W3C_Verifiable_Credentials,
@@ -30,7 +31,8 @@ it('can create a documentLoader', async () => {
     .addResolver({
       'did:key:z6': {
         resolve: async function(did: string) {
-          return ed25519.driver.get({ did });
+          const { didDocument } = await ed25519.driver.resolve(did);
+          return didDocument;
         },
       },
     })
@@ -38,6 +40,8 @@ it('can create a documentLoader', async () => {
 });
 
 it('can issue a vc using a documentLoader', async () => {
+  // relative ref handling.
+  key.id = key.controller + key.id;
   vc = await vcjs.ld.issue({
     credential: {
       '@context': [
@@ -58,7 +62,7 @@ it('can issue a vc using a documentLoader', async () => {
     },
     documentLoader,
     suite: new Ed25519Signature2018({
-      key,
+      key: key,
       date: '2020-03-10T04:24:12.164Z',
     }),
   });

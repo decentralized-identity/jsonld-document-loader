@@ -14,6 +14,8 @@ npm i @transmute/jsonld-document-loader --save
 
 ### Usage
 
+See these tests for working with [Verifiable Credentials](./src/__tests__/e2e.test.ts).
+
 ```ts
 import {
   documentLoaderFactory,
