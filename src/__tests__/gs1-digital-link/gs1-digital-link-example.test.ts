@@ -16,7 +16,7 @@ it('generate some keys', async () => {
       );
     },
   });
-  key.controller = 'https://id.gs1.org/gln/0614141123452'
+  key.controller = 'https://id.gs1.org/gln/0614141123452';
   key.id = key.controller + key.id;
   expect(key.id).toBeDefined();
 });
@@ -34,22 +34,20 @@ it('can create a documentLoader', async () => {
       'https://id.gs1.org/gln/': {
         resolve: async function(_did: string) {
           return {
-            "@context": [
-              "https://www.w3.org/ns/did/v1",
-            ],
-            "id": "https://id.gs1.org/gln/0614141123452",
-            "verificationMethod": [
+            '@context': ['https://www.w3.org/ns/did/v1'],
+            id: 'https://id.gs1.org/gln/0614141123452',
+            verificationMethod: [
               {
-                "id": "#z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP",
-                "type": "Ed25519VerificationKey2018",
-                "controller": "https://id.gs1.org/gln/0614141123452",
-                "publicKeyBase58": "dbDmZLTWuEYYZNHFLKLoRkEX4sZykkSLNQLXvMUyMB1"
+                id: '#z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP',
+                type: 'Ed25519VerificationKey2018',
+                controller: 'https://id.gs1.org/gln/0614141123452',
+                publicKeyBase58: 'dbDmZLTWuEYYZNHFLKLoRkEX4sZykkSLNQLXvMUyMB1',
               },
             ],
-            "assertionMethod": [
-              "#z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP"
-            ]
-          }
+            assertionMethod: [
+              '#z6Mkf5rGMoatrSj1f4CyvuHBeXJELe9RPdzo2PKGNCKVtZxP',
+            ],
+          };
         },
       },
     })
